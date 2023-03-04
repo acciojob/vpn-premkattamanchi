@@ -22,16 +22,16 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User connect(int userId, String countryName) throws Exception{
        User user=userRepository2.findById(userId).get();
-       if(user.isConnected()==true)
+       if(user.getConnected()==true)
            throw new Exception("Already connected");
-       else if(user.getCountry().getCountryName().equals(countryName))
+       else if(user.getOriginalCountry().getCountryName().equals(countryName))
            return user;
        return user;
     }
     @Override
     public User disconnect(int userId) throws Exception {
         User user=userRepository2.findById(userId).get();
-        if(user.isConnected()==false)
+        if(user.getConnected()==false)
             throw new Exception("Already disconnected");
         user.setConnected(false);
         user.setMaskedIP(null);

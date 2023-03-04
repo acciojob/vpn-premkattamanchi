@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
        user.setPassword(password);
        user.setConnected(false);
        user.setMaskedIP(null);
-       user.setCountry(country);
-       user.getServiceProviderList().add(country.getServiceProvider());
+       user.setOriginalCountry(country);
+       user.getServiceProviders().add(country.getServiceProvider());
        user=userRepository3.save(user);
        String originalIp=country.getCode()+"."+user.getId();
        user.setOriginalIP(originalIp);
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     public User subscribe(Integer userId, Integer serviceProviderId) {
         User user=userRepository3.findById(userId).get();
         ServiceProvider serviceProvider=serviceProviderRepository3.findById(serviceProviderId).get();
-        user.getServiceProviderList().add(serviceProvider);
+        user.getServiceProviders().add(serviceProvider);
         serviceProvider.getUsers().add(user);
         serviceProviderRepository3.save(serviceProvider);
         return user;
