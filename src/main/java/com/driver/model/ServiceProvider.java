@@ -19,7 +19,7 @@ public class ServiceProvider {
     @JoinColumn
     private Admin admin;
 
-    @OneToMany(mappedBy = "serviceProviderList",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
     private List<Connection> connectionList=new ArrayList<>();
 
     @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
@@ -75,4 +75,5 @@ public class ServiceProvider {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
 }
