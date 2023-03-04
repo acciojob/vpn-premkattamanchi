@@ -19,13 +19,13 @@ public class ServiceProvider {
     @JoinColumn
     private Admin admin;
 
-    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "serviceProviderList",cascade = CascadeType.ALL)
     private List<Connection> connectionList=new ArrayList<>();
 
     @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
     private List<Country> countryList=new ArrayList<>();
 
-    @ManyToMany(mappedBy = "serviceProviders",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "serviceProviderList",cascade = CascadeType.ALL)
     private List<User> users=new ArrayList<>();
 
     public int getId() {

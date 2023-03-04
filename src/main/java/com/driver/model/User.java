@@ -20,7 +20,7 @@ public class User {
 
     @ManyToMany
     @JoinColumn
-    private List<ServiceProvider> serviceProviders=new ArrayList<>();
+    private List<ServiceProvider> serviceProviderList=new ArrayList<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection> connectionList=new ArrayList<>();
@@ -76,12 +76,12 @@ public class User {
         this.connected = connected;
     }
 
-    public List<ServiceProvider> getServiceProviders() {
-        return serviceProviders;
+    public List<ServiceProvider> getServiceProviderList() {
+        return serviceProviderList;
     }
 
-    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
-        this.serviceProviders = serviceProviders;
+    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
+        this.serviceProviderList = serviceProviderList;
     }
 
     public List<Connection> getConnectionList() {
