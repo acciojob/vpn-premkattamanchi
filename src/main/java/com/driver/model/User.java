@@ -20,7 +20,7 @@ public class User {
 
     @ManyToMany
     @JoinColumn
-    private List<ServiceProvider> serviceProviderList=new ArrayList<>();
+    private List<ServiceProvider> serviceProviders=new ArrayList<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Connection> connectionList=new ArrayList<>();
@@ -52,19 +52,19 @@ public class User {
         this.password = password;
     }
 
-    public String getOriginalIP() {
+    public String getOriginalIp() {
         return originalIP;
     }
 
-    public void setOriginalIP(String originalIP) {
+    public void setOriginalIp(String originalIP) {
         this.originalIP = originalIP;
     }
 
-    public String getMaskedIP() {
+    public String getMaskedIp() {
         return maskedIP;
     }
 
-    public void setMaskedIP(String maskedIP) {
+    public void setMaskedIp(String maskedIP) {
         this.maskedIP = maskedIP;
     }
 
@@ -77,11 +77,11 @@ public class User {
     }
 
     public List<ServiceProvider> getServiceProviders() {
-        return serviceProviderList;
+        return serviceProviders;
     }
 
-    public void setServiceProviders(List<ServiceProvider> serviceProviderList) {
-        this.serviceProviderList = serviceProviderList;
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        this.serviceProviders = serviceProviders;
     }
 
     public List<Connection> getConnectionList() {
@@ -96,7 +96,7 @@ public class User {
         return originalCountry;
     }
 
-    public void setOriginalCountry(Country country) {
+    public void setOriginalCountry(Country originalCountry) {
         this.originalCountry = originalCountry;
     }
 }

@@ -33,12 +33,12 @@ public class UserServiceImpl implements UserService {
        user.setUsername(username);
        user.setPassword(password);
        user.setConnected(false);
-       user.setMaskedIP(null);
+       user.setMaskedIp(null);
        user.setOriginalCountry(country);
        user.getServiceProviders().add(country.getServiceProvider());
        user=userRepository3.save(user);
        String originalIp=country.getCode()+"."+user.getId();
-       user.setOriginalIP(originalIp);
+       user.setOriginalIp(originalIp);
        user=userRepository3.save(user);
        return user;
 
