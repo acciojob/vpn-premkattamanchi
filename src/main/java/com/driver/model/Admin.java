@@ -1,5 +1,7 @@
 package com.driver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Admin {
     public Admin() {
     }
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ServiceProvider> serviceProviderList=new ArrayList<>();
 
     public int getId() {
@@ -46,7 +49,7 @@ public class Admin {
         return serviceProviderList;
     }
 
-    public void setServiceProviderList(List<ServiceProvider> serviceProviders) {
-        this.serviceProviderList = serviceProviders;
+    public void setServiceProviderList(List<ServiceProvider> serviceProvidersList) {
+        this.serviceProviderList = serviceProvidersList;
     }
 }

@@ -24,7 +24,13 @@ public class AdminController {
     @PostMapping("/addProvider")
     public ResponseEntity<Admin> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName){
         //add a serviceProvider under the admin and return updated admin
-        Admin admin = adminService.addServiceProvider(adminId, providerName);
+        Admin admin=null;
+        try{
+            admin = adminService.addServiceProvider(adminId, providerName);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(admin,HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(admin,HttpStatus.OK);
     }
 
@@ -38,7 +44,6 @@ public class AdminController {
             serviceProvider = adminService.addCountry(serviceProviderId, countryName);
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(serviceProvider,HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(serviceProvider,HttpStatus.OK);

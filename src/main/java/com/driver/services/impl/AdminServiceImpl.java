@@ -35,11 +35,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin addServiceProvider(int adminId, String providerName) {
+    public Admin addServiceProvider(int adminId, String providerName) throws Exception{
         Admin admin=adminRepository1.findById(adminId).get();
         ServiceProvider serviceProvider=new ServiceProvider();
         serviceProvider.setName(providerName);
         serviceProvider.setAdmin(admin);
+        serviceProviderRepository1.save(serviceProvider);
         admin.getServiceProviderList().add(serviceProvider);
         //saving parent
         adminRepository1.save(admin);
@@ -49,12 +50,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ServiceProvider addCountry(int serviceProviderId, String countryName) throws Exception{
-        List<String> list= Arrays.asList(new String[]{"AUS","aus","IND","ind","USA","usa","CHI","chi","jpn","JPN"});
-        if(!list.contains(countryName))
-            throw new Exception("Conutry not found");
+        List<String> list= Arrays.asList(new String[]{"AUS","IND","USA","CHI","JPN"});
+        if(!list.contains(countryName.toUpperCase()))
+            throw new Exception("Country not found");
         Country country=new Country();
         CountryName countryName1=CountryName.valueOf(countryName);
-        country.setCountryName(CountryName.valueOf(countryName));
+        country.setCountryName(countryName1);
         country.setCode(countryName1.toCode());
 
         ServiceProvider serviceProvider=serviceProviderRepository1.findById(serviceProviderId).get();

@@ -1,6 +1,7 @@
 package com.driver.services.impl;
 
 import com.driver.model.Country;
+import com.driver.model.CountryName;
 import com.driver.model.ServiceProvider;
 import com.driver.model.User;
 import com.driver.repository.CountryRepository;
@@ -25,19 +26,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String username, String password, String countryName) throws Exception{
-        List<String> list= Arrays.asList(new String[]{"AUS","aus","IND","ind","USA","usa","CHI","chi","jpn","JPN"});
-        if(!list.contains(countryName))
-            throw new Exception("Conutry not found");
-        Country country=countryRepository3.findByCountryName(countryName);
+        List<String> list= Arrays.asList(new String[]{"AUS","IND","USA","CHI","JPN"});
+        if(!list.contains(countryName.toUpperCase()))
+            throw new Exception("Country not found");
+        Country country=new Country();
+        CountryName countryName1=CountryName.valueOf(countryName);
+        country.setCountryName(countryName1);
+        country.setCode(countryName1.toCode());
        User user=new User();
        user.setUsername(username);
        user.setPassword(password);
        user.setConnected(false);
        user.setMaskedIp(null);
        user.setOriginalCountry(country);
-       user.getServiceProviderList().add(country.getServiceProvider());
        user=userRepository3.save(user);
-       String originalIp=country.getCode()+"."+user.getId();
+       String originalIp=countryName1.toCode()+"."+user.getId();
        user.setOriginalIp(originalIp);
        user=userRepository3.save(user);
        return user;
