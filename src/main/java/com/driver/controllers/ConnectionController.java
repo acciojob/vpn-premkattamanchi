@@ -14,7 +14,7 @@ public class ConnectionController {
     ConnectionServiceImpl connectionService;
 
     @PostMapping("/connect")
-    public ResponseEntity<User> connect(@RequestParam int userId, @RequestParam String countryName) {
+    public ResponseEntity<User> connect(@RequestParam int userId, @RequestParam String countryName)throws Exception {
         //Connect the user to a vpn by considering the following priority order.
         //1. If the user is already connected to any service provider, throw "Already connected" exception.
         //2. Else if the countryName corresponds to the original country of the user, do nothing. This means that the user wants to connect to its original country, for which we do not require a connection. Thus, return the user as it is.
@@ -33,7 +33,7 @@ public class ConnectionController {
     }
 
     @DeleteMapping("/disconnect")
-    public ResponseEntity<User> disconnect(@RequestParam int userId){
+    public ResponseEntity<User> disconnect(@RequestParam int userId)throws Exception{
         //If the given user was not connected to a vpn, throw "Already disconnected" exception.
         //Else, disconnect from vpn, make masked Ip as null, update relevant attributes and return updated user.
         User user=null;
@@ -48,7 +48,7 @@ public class ConnectionController {
     }
 
     @GetMapping("/communicate")
-    public ResponseEntity<Void> communicate(@RequestParam int senderId, @RequestParam int receiverId) {
+    public ResponseEntity<Void> communicate(@RequestParam int senderId, @RequestParam int receiverId)throws Exception {
         //Establish a connection between sender and receiver users
         //To communicate to the receiver, sender should be in the current country of the receiver.
         //If the receiver is connected to a vpn, his current country is the one he is connected to.
