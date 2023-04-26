@@ -24,13 +24,7 @@ public class AdminController {
     @PostMapping("/addProvider")
     public ResponseEntity<Admin> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName)throws Exception{
         //add a serviceProvider under the admin and return updated admin
-        Admin admin=null;
-        try{
-            admin = adminService.addServiceProvider(adminId, providerName);
-        }
-        catch(Exception e){
-            return new ResponseEntity<>(admin,HttpStatus.BAD_REQUEST);
-        }
+        Admin admin = adminService.addServiceProvider(adminId, providerName);
         return new ResponseEntity<>(admin,HttpStatus.OK);
     }
 
@@ -39,13 +33,7 @@ public class AdminController {
         //add a country under the serviceProvider and return respective service provider
         //country name would be a 3-character string out of ind, aus, usa, chi, jpn. Each character can be in uppercase or lowercase. You should create a new Country object based on the given country name and add it to the country list of the service provider. Note that the user attribute of the country in this case would be null.
         //In case country name is not amongst the above mentioned strings, throw "Country not found" exception
-        ServiceProvider serviceProvider=null;
-        try{
-            serviceProvider = adminService.addCountry(serviceProviderId, countryName);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(serviceProvider,HttpStatus.BAD_REQUEST);
-        }
+        ServiceProvider serviceProvider = adminService.addCountry(serviceProviderId, countryName);
         return new ResponseEntity<>(serviceProvider,HttpStatus.OK);
     }
 }
