@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         if(!list.contains(countryName.toUpperCase()))
             throw new Exception("Country not found");
         Country country=new Country();
-        CountryName countryName1=CountryName.valueOf(countryName);
+        CountryName countryName1=CountryName.valueOf(countryName.toUpperCase());
         country.setCountryName(countryName1);
         country.setCode(countryName1.toCode());
        User user=new User();

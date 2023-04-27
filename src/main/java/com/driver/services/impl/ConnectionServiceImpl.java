@@ -52,7 +52,6 @@ public class ConnectionServiceImpl implements ConnectionService {
        user.getConnectionList().add(connection);
        lowestServiceProvider.getConnectionList().add(connection);
        userRepository2.save(user);
-       connectionRepository2.save(connection);
        serviceProviderRepository2.save(lowestServiceProvider);
        return user;
     }
