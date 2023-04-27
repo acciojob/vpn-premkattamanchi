@@ -40,7 +40,6 @@ public class AdminServiceImpl implements AdminService {
         ServiceProvider serviceProvider=new ServiceProvider();
         serviceProvider.setName(providerName);
         serviceProvider.setAdmin(admin);
-        serviceProviderRepository1.save(serviceProvider);
         admin.getServiceProviders().add(serviceProvider);
         //saving parent
         adminRepository1.save(admin);
@@ -54,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
         if(!list.contains(countryName.toUpperCase()))
             throw new Exception("Country not found");
         Country country=new Country();
-        CountryName countryName1=CountryName.valueOf(countryName);
+        CountryName countryName1=CountryName.valueOf(countryName.toUpperCase());
         country.setCountryName(countryName1);
         country.setCode(countryName1.toCode());
 
